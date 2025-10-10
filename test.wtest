@@ -1,0 +1,15 @@
+import estudiante.*
+import materiaAprobada.*
+import materia.*
+import carrera.*
+
+describe "Test sobre metodo aprobarMateria(materia) de estudiante pepe" {
+  const pepe = new Estudiante()
+  const obj = new Materia()
+  
+  test "pepe aprueba la materia obj con 7" {
+    pepe.aprobarMateria(obj, 7)
+    assert.notThat(pepe.aprobadas().isEmpty())
+    assert.that(pepe.esMateriaAprobada(obj))
+  }
+}
