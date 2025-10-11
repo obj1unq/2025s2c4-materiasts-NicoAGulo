@@ -1,0 +1,53 @@
+import estudiante.*
+import materiaAprobada.*
+import materia.*
+import carrera.*
+
+const pepe = new Estudiante()
+
+describe "Test sobre metodo aprobarMateria(materia) de estudiante pepe" {
+  const obj = new Materia()
+  
+  test "pepe aprueba la materia obj con 7" {
+    pepe.aprobarMateria(obj, 7)
+    assert.notThat(pepe.aprobadas().isEmpty())
+    assert.that(pepe.esMateriaAprobada(obj))
+  }
+}
+
+describe "cantidad de materias aprobadas, nota promedio y si tiene o no una materia aprobada" {
+
+  // Saber para un estudiante: 
+  //   - la cantidad de materias aprobadas,
+  //   - el promedio, 
+  //   - si tiene o no aprobada una materia.
+  method initialize() {
+    pepe.aprobarMateria(objetos1, 7)
+    pepe.aprobarMateria(matematica1, 8)
+  }
+
+  test "cantidad de materias aprobadas" {
+    assert.that(pepe.cantidadAprobadas()==2)
+    pepe.aprobarMateria(trabajoFinal, 6)
+    assert.that(pepe.cantidadAprobadas()==3)
+  }
+
+  test "promedio de notas de materias aprobadas" {
+    assert.equals(7.5, pepe.promedioAprobadas())
+    pepe.aprobarMateria(trabajoFinal, 6)
+    assert.equals(7, pepe.promedioAprobadas())
+
+  }
+
+  test "chequear que tiene objetos1 aprobada"{
+    assert.that(pepe.esMateriaAprobada(objetos1))
+  }
+  test "pero no tiene aprobada basesDeDatos"{
+    assert.notThat(pepe.esMateriaAprobada(basesDeDatos))
+  }
+  test "la materia objetos1 ya esta aprobada, entonces devuelve una excepcion"{
+    assert.throwsExceptionWithMessage("Esa materia ya figura como una materia aprobada y no se puede reemplazar ni sacar.", { pepe.aprobarMateria(objetos1, 6) })
+  }
+
+
+}
