@@ -12,7 +12,7 @@ const programacion = new Carrera(
     objetos2,
     objetos3,
     trabajoFinal,
-    basesDeDatos
+    baseDeDatos
   }
 )
 
