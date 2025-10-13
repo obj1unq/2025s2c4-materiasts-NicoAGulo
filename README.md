@@ -9,7 +9,7 @@ De cada materia aprobada hay que saber qué materia aprobó y con qué nota.
 Cada materia pertenece a una única carrera. Pero, un estudiante puede estar cursando distintas carreras. 
 
 En los ejemplos incluiremos tres carreras: _Programación_, _Medicina_ y _Derecho_.
-- Programación incluye, entre otras, estas materias: Elementos de Programación, Matemática 1, Objetos 1, Objetos 2, Objetos 3, Trabajo Final, Bases de Datos. 
+- Programación incluye, entre otras, estas materias: Elementos de Programación, Matemática 1, Objetos 1, Objetos 2, Objetos 3, Trabajo Final, Base de Datos. 
 - Medicina incluye Química, Biología 1, Biología 2, Anatomía General.
 - Derecho incluye Latín, Derecho Romano, Historia del Derecho Argentino, Derecho Penal 1, Derecho Penal 2.
 

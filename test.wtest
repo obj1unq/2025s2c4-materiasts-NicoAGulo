@@ -1,0 +1,100 @@
+import estudiante.*
+import materiaAprobada.*
+import materia.*
+import carrera.*
+
+const roque = new Estudiante()
+
+describe "Test sobre metodo aprobarMateria(materia) de estudiante roque" {
+  const obj = new Materia()
+  
+  test "roque aprueba la materia obj con 7" {
+    roque.aprobarMateria(obj, 7)
+    assert.notThat(roque.aprobadas().isEmpty())
+    assert.that(roque.esMateriaAprobada(obj))
+  }
+}
+
+describe "cantidad de materias aprobadas, nota promedio y si tiene o no una materia aprobada" {
+
+  // Saber para un estudiante: 
+  //   - la cantidad de materias aprobadas,
+  //   - el promedio, 
+  //   - si tiene o no aprobada una materia.
+  method initialize() {
+    roque.aprobarMateria(objetos1, 7)
+    roque.aprobarMateria(matematica1, 8)
+  }
+
+  test "cantidad de materias aprobadas" {
+    assert.that(roque.cantidadAprobadas()==2)
+    roque.aprobarMateria(trabajoFinal, 6)
+    assert.that(roque.cantidadAprobadas()==3)
+  }
+
+  test "promedio de notas de materias aprobadas" {
+    assert.equals(7.5, roque.promedioAprobadas())
+    roque.aprobarMateria(trabajoFinal, 6)
+    assert.equals(7, roque.promedioAprobadas())
+
+  }
+
+  test "chequear que tiene objetos1 aprobada"{
+    assert.that(roque.esMateriaAprobada(objetos1))
+  }
+  test "pero no tiene aprobada baseDeDatos"{
+    assert.notThat(roque.esMateriaAprobada(baseDeDatos))
+  }
+  test "la materia objetos1 ya esta aprobada, entonces devuelve una excepcion"{
+    assert.throwsExceptionWithMessage("Esa materia ya figura como una materia aprobada y no se puede reemplazar ni sacar.", { roque.aprobarMateria(objetos1, 6) })
+  }
+
+
+}
+
+describe "Lista de todas las materias de todas las carreras que este cursando roque (programacion && medicina)" {
+  method initialize() {
+    roque.cursarCarrera(programacion)
+    roque.cursarCarrera(medicina)
+  }
+
+
+  test "se agrego medicina y programacion como carreras que esta estudiando roque" {
+    assert.that(roque.esCarreraCursando(programacion))
+    assert.that(roque.esCarreraCursando(medicina))
+    assert.equals(2, roque.carrerasCursando().size())
+  }
+
+  test "puede anotarse a materias que sean de programacion o medicina" {
+    assert.that(roque.puedeInscribirseAMateria(elementosDeProgramacion))
+    roque.inscribirMateria(elementosDeProgramacion)
+
+    assert.that(roque.puedeInscribirseAMateria(objetos1))
+    roque.inscribirMateria(objetos1)
+
+    assert.that(roque.puedeInscribirseAMateria(quimica))
+    assert.that(roque.puedeInscribirseAMateria(biologia1))
+  }
+
+  test "no puede anotarse a latin porque no esta cursando derecho" {
+    assert.notThat(roque.puedeInscribirseAMateria(latin))
+  }
+
+  test "tiene que aprobar las correlativas de una materia para poder inscribirse" {
+    assert.notThat(roque.puedeInscribirseAMateria(baseDeDatos))
+
+    assert.that(roque.puedeInscribirseAMateria(elementosDeProgramacion))
+    roque.inscribirMateria(elementosDeProgramacion)
+
+
+    assert.that(roque.puedeInscribirseAMateria(baseDeDatos))
+    roque.inscribirMateria(baseDeDatos)
+    
+  }
+
+
+
+
+
+
+}
